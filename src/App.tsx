@@ -12,7 +12,7 @@ const GlobalStyle = createGlobalStyle`
     width: 100%;
     min-height: 100vh;
     color: #271b84;
-    background-color: #e06c6c;
+    background-color: #7a6363;
 
     #root {
       width: 100%;

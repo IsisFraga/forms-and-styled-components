@@ -7,14 +7,18 @@ export const StyledForm = styled.form`
 `
 
 interface IStyledLabel {
-  valid?: boolean;
+  invalid?: boolean;
+}
+
+interface IStyledButton {
+  enabled?: boolean;
 }
 
 export const StyledLabel = styled.label<IStyledLabel>`
   display: block;
   margin-bottom: 5px;
   font-weight: bold;
-  color: ${props => props.valid ? 'black' : 'red'};
+  color: ${props => props.invalid ? 'red' : 'black'};
 `
 
 export const StyledInput = styled.input`
@@ -24,14 +28,14 @@ export const StyledInput = styled.input`
   border-radius: 5px;
 `
 
-export const StyledButton = styled.button`
+export const StyledButton = styled.button<IStyledButton>`
   background-color: #4caf50;
   color: white;
   padding: 10px;
   margin-top: 10px;
   border: none;
   border-radius: 5px;
-  cursor: pointer;
+  cursor: ${props => !props.enabled ? "not-allowed" : "pointer"};
   &:disabled {
     opacity: 0.5;
   }

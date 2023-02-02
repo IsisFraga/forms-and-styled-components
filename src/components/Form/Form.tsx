@@ -5,34 +5,46 @@ export default function LoginForm() {
 
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
-  const [userNameValid, setUserNameValid] = useState<boolean>();
-  const [passwordValid, setPasswordValid] = useState<boolean>();
+  const [passwordInvalid, setPasswordInvalid] = useState(false);
+  const [buttonEnabled, seButtonEnabled] = React.useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (password.length < 6) {
-      setPasswordValid(false)
+      setPasswordInvalid(true)
     } else {
-      setPasswordValid(true);
+      setPasswordInvalid(false);
     }
   }
 
   const handleUserName = (e) => {
     setUserName(e.target.value);
+    handleButtonEnabled(userName, password)
   }
   
   const handlePassword = (e) => {
     setPassword(e.target.value)
+    handleButtonEnabled(userName, password)
   }
+
+  const handleButtonEnabled = (username: string, password: string) => {
+    if(username.length > 0 && password.length > 0) {
+      seButtonEnabled(true);
+    } else {
+      seButtonEnabled(false);
+    }
+}
+
+
 
   return (
     <FC.StyledForm onSubmit={handleSubmit}>
       <FC.StyledLabel>Nome de usuário:</FC.StyledLabel>
-      <FC.StyledInput type="text" placeholder="teste" value={userName} onChange={(e) => handleUserName(e)}/>
-      <FC.StyledLabel valid={passwordValid}>Senha:</FC.StyledLabel>
+      <FC.StyledInput type="text" placeholder="Seu nome aqui" value={userName} onChange={(e) => handleUserName(e)}/>
+      <FC.StyledLabel invalid={passwordInvalid}>Senha:</FC.StyledLabel>
       <FC.StyledInput type="password" onChange={(e) => handlePassword(e)}/>
-      {passwordValid && <FC.StyledAlert>Senha inválida!</FC.StyledAlert>}
-      <FC.StyledButton type="submit">Enviar</FC.StyledButton>
+      {passwordInvalid && <FC.StyledAlert>Senha inválida!</FC.StyledAlert>}
+      <FC.StyledButton type="submit"disabled={!userName || !password}>Enviar</FC.StyledButton>
     </FC.StyledForm>
   )
 }

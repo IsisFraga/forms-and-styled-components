@@ -8,6 +8,7 @@ interface ITitle {
 export const Title = styled.h1<ITitle>`
   color: ${props => `${props.color}`};
   font-size: ${props => `${props.fontSize}px`};
+  margin: 0;
   &:hover {
     background-color: black;
   }
