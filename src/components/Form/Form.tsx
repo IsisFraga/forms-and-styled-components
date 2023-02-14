@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import {UserContext} from '../../context/UserContext';
 import * as FC from './Form.styles';
 
 export default function LoginForm() {
 
+  const { setUser } = useContext(UserContext)
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
   const [passwordInvalid, setPasswordInvalid] = useState(false);
@@ -14,6 +16,7 @@ export default function LoginForm() {
       setPasswordInvalid(true)
     } else {
       setPasswordInvalid(false);
+      setUser({name: userName, password: password})
     }
   }
 

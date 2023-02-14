@@ -1,6 +1,8 @@
 import { createGlobalStyle, ThemeProvider } from "styled-components"
+import Footer from "./components/Footer/Footer"
 import Form from "./components/Form/Form"
 import Header from "./components/Header/Header"
+import UserProvider from "./context/UserContext"
 import * as theme from './theme'
 
 
@@ -24,11 +26,14 @@ function App() {
 
   return (
     <>
-      <GlobalStyle />
-      <ThemeProvider theme={theme}>
-        <Header />
-        <Form />
-      </ThemeProvider>
+      <UserProvider>
+        <GlobalStyle />
+        <ThemeProvider theme={theme}>
+          <Header />
+          <Form />
+        </ThemeProvider>
+      </UserProvider>
+      <Footer />
     </>
   )
 }
