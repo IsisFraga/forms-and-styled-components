@@ -10,7 +10,7 @@ export default function LoginForm() {
   const [passwordInvalid, setPasswordInvalid] = useState(false);
   const [buttonEnabled, seButtonEnabled] = React.useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
     if (password.length < 6) {
       setPasswordInvalid(true)
@@ -20,12 +20,12 @@ export default function LoginForm() {
     }
   }
 
-  const handleUserName = (e) => {
+  const handleUserName = (e: any) => {
     setUserName(e.target.value);
     handleButtonEnabled(userName, password)
   }
   
-  const handlePassword = (e) => {
+  const handlePassword = (e: any) => {
     setPassword(e.target.value)
     handleButtonEnabled(userName, password)
   }
